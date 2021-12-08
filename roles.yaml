@@ -1,0 +1,10 @@
+---
+- hosts: prac
+  become: true
+ 
+  roles:
+    - wget
+    - java
+    - httpd
+    - nginx
+         
