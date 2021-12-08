@@ -1,0 +1,4 @@
+- name: check httpd is installed
+  yum:
+     name: httpd
+     state: present
