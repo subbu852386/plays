@@ -1,0 +1,10 @@
+- name: Install Apache in slave
+  ansible.builtin.yum:
+    name: httpd
+    state: latest
+- name: Starting a Apache Server
+  ansible.builtin.service:
+    name: httpd
+    state: started
+  notify:
+    - ReStarting a Apache Server

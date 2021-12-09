@@ -1,0 +1,6 @@
+---
+- hosts: prac
+  become: true
+ 
+  roles:
+    - apache
