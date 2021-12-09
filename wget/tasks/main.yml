@@ -1,3 +1,0 @@
-- name: update
-  yum:
-    state: latest
