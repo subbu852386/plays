@@ -8,3 +8,8 @@
     state: started
   notify:
     - ReStarting a Apache Server
+- name: Copy index.html
+  ansible.builtin.copy:
+    src: /home/subbu/plays/apache/files/index.html
+    dest: /var/www/html/index.html
+

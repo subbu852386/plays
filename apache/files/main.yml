@@ -1,4 +1,0 @@
-- name: Copy index.html
-  ansible.builtin.copy:
-    src: /home/subbu/apache/templates
-    dest: /var/www/html/index.html
