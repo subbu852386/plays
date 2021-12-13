@@ -1,26 +1,23 @@
-- name: Update apt cache and install Nginx
-  yum:
+- name: Install packages
+  package:
     name: nginx
     state: latest
-    update_cache: yes                         
-
-- name: Copy website files to the server's document root
+  
+- name: nginx configuration file
   copy:
-    src: /home/subbu/plays/nginx/files
-    dest: /etc/nginx/files/
-    mode: preserve
-
-- name: Apply Nginx template
-  template:
-    src: /home/subbu/plays/nginx/templates/nginx.conf.j2
-    dest: /home/subbu/
-  notify: Restart Nginx
-
-- name: Enable new site
-  file:
-    src: /home/subbu/plays/nginx/files
-    dest: /etc/nginx/files/default
-    state: link
-    force: yes
-  notify: Restart Nginx
-
+    dest: /etc/nginx/nginx.conf
+    src: etc/nginx/nginx.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: reload nginx
+  
+  
+- name: To shift site contents
+  copy:
+    dest: /var/www/html/index.html
+    src: /home/subbu/plays/nginx/files/html_demo_site-main/index.html
+    owner: root
+    group: root
+    mode: 0755
+  notify: reload nginx
