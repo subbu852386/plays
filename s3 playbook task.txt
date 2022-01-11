@@ -1,0 +1,30 @@
+---
+- name: s3 task
+  hosts: all
+  connection: local
+  tasks:
+  - name: create s3 bucket
+    aws_s3:
+      bucket: subbu8639
+      mode: create
+      permission: public-read
+      region: us-east-1
+  - name: enable versioning
+    amazon.aws.s3_bucket:
+      name: subbu8639
+      versioning: yes
+      tags:
+        name : ansiblebucket
+        type: trial
+  - name: create a folder
+    amazon.aws.aws_s3:
+      bucket: subbu8639
+      object: myfolder
+      mode: create
+  - name: create a file in the folder
+    amazon.aws.aws_s3:
+      bucket: subbu8639
+      object: myfolder/7023.txt
+      src: /home/ec2-user/7023.txt
+      mode: put
+      permission: public-read
